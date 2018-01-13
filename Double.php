@@ -66,9 +66,6 @@ class Double extends \pocketmine\plugin\PluginBase implements \pocketmine\event\
 		$this->mod[$ev->getPlayer()->getName()] = "대쉬";
 		$ev->getPlayer()->setAllowFlight(true);
 	}
-	public function onMove(\pocketmine\event\player\PlayerMoveEvent $ev){
-		if($ev->getPlayer()->isFlying()) $ev->getPlayer()->setFlying(false);
-	}
 	public function onDamage(\pocketmine\event\entity\EntityDamageEvent $ev){
 		$entity = $ev->getEntity();
 		if(!$entity instanceof \pocketmine\Player) return false;
@@ -78,12 +75,11 @@ class Double extends \pocketmine\plugin\PluginBase implements \pocketmine\event\
 		$p = $ev->getPlayer();
 		if($p->getGamemode() !== 0) return false;
 		if(!$p->isOnGround()){
+			$ev->setCancelled(true);
 			if($this->mod[$p->getName()] == "대쉬"){
-				$p->setFlying(false);
 				$p->setMotion($p->getDirectionVector()->multiply($this->intensity[$p->getName()] ?? 1));
 				return;
 			}elseif($this->mod[$p->getName()] == "점프"){
-				$p->setFlying(false);
 				$p->setMotion(new Vector3(0, $this->intensity[$p->getName()], 0));
 				return;
 			}
