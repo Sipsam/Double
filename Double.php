@@ -5,7 +5,7 @@
  * @main sipsam\Double
  * @author sipsam1
  * @version 1
- * @api 3.0.0-ALPHA10
+ * @api 4.0.0
  */
 namespace sipsam;
 
