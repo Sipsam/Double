@@ -8,8 +8,6 @@
  * @api 4.0.0
  */
 namespace sipsam;
-
-use pocketmine\math\Vector3;
 class Double extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Listener{
 	public $intensity = [];
 	public $mod = [];
@@ -80,7 +78,7 @@ class Double extends \pocketmine\plugin\PluginBase implements \pocketmine\event\
 				$p->setMotion($p->getDirectionVector()->multiply($this->intensity[$p->getName()] ?? 1));
 				return;
 			}elseif($this->mod[$p->getName()] == "점프"){
-				$p->setMotion(new Vector3(0, $this->intensity[$p->getName()], 0));
+				$p->setMotion(new \pocketmine\math\Vector3(0, $this->intensity[$p->getName()], 0));
 				return;
 			}
 		}
